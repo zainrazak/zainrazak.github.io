@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zain Razak's AI Projects - Multi-Agent Systems, LangGraph, CrewAI">
+    <title>Projects | Zain Razak</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .projects-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+        }
+
+        .projects-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5% 5rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(79, 70, 229, 0.3);
+        }
+
+        .project-header {
+            margin-bottom: 2rem;
+        }
+
+        .project-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(79, 70, 229, 0.15);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .project-features ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .project-features li {
+            padding: 0.8rem 0;
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .project-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .chatbot-section {
+            margin-top: 5rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .chatbot-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .chatbot-placeholder {
+            background: var(--bg-card);
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 4rem 2rem;
+            margin-top: 2rem;
+        }
+
+        .chatbot-placeholder h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">ZR</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="interests.html">Interests</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="projects-hero">
+        <div class="hero-content">
+            <h1>AI Projects & Innovations</h1>
+            <p class="tagline">Building <span>Intelligent Agent Systems</span> & Automation Solutions</p>
+        </div>
+    </section>
+
+    <div class="projects-container">
+        <!-- Project 1: Deep Research Agent -->
+        <div class="project-card">
+            <div class="project-header">
+                <h2 class="project-title">🔍 Deep Research Agent System</h2>
+                <p style="color: var(--text-secondary); font-size: 1.1rem;">Comprehensive research automation with multi-agent orchestration</p>
+            </div>
+
+            <div class="project-tech">
+                <span class="tech-tag">OpenAI Agents SDK</span>
+                <span class="tech-tag">Pydantic</span>
+                <span class="tech-tag">SendGrid API</span>
+                <span class="tech-tag">Asyncio</span>
+                <span class="tech-tag">Python</span>
+            </div>
+
+            <div class="project-features">
+                <h4 style="color: var(--text-primary); margin: 1.5rem 0 1rem;">Key Features:</h4>
+                <ul>
+                    <li>Multi-Agent Research Workflow: Coordinated system of specialized AI agents (Planner, Search, Writer, Email)</li>
+                    <li>Structured Outputs with Pydantic for type-safe, validated responses</li>
+                    <li>Parallel Search Execution for optimized research efficiency</li>
+                    <li>Web Search Integration with OpenAI's WebSearchTool</li>
+                    <li>Email Delivery System using SendGrid API</li>
+                    <li>Observability & Tracing with OpenAI's tracing system</li>
+                </ul>
+                <p style="color: var(--text-secondary); margin-top: 1.5rem; font-style: italic;">
+                    Applications: Market research, content creation, intelligence gathering, productivity automation
+                </p>
+            </div>
+        </div>
+
+        <!-- Project 2: Multi-Agent Crew Systems -->
+        <div class="project-card">
+            <div class="project-header">
+                <h2 class="project-title">🤝 Multi-Agent Crew Systems</h2>
+                <p style="color: var(--text-secondary); font-size: 1.1rem;">Sophisticated agent orchestration with CrewAI framework</p>
+            </div>
+
+            <div class="project-tech">
+                <span class="tech-tag">CrewAI Framework</span>
+                <span class="tech-tag">Pydantic</span>
+                <span class="tech-tag">SerperDevTool</span>
+                <span class="tech-tag">OpenAI Embeddings</span>
+                <span class="tech-tag">SQLite</span>
+                <span class="tech-tag">YAML</span>
+            </div>
+
+            <div class="project-features">
+                <h4 style="color: var(--text-primary); margin: 1.5rem 0 1rem;">Key Features:</h4>
+                <ul>
+                    <li>Financial Analysis: Automated company research and investment analysis workflows</li>
+                    <li>Decision Support: Structured decision-making with multiple perspectives</li>
+                    <li>Research Automation: Comprehensive information gathering and synthesis</li>
+                    <li>Content Generation: Professional report creation with review stages</li>
+                    <li>Workflow Automation: Complex multi-step processes with agent collaboration</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Project 3: The Sidekick -->
+        <div class="project-card">
+            <div class="project-header">
+                <h2 class="project-title">🦾 The Sidekick - Self-Improving Agent</h2>
+                <p style="color: var(--text-secondary); font-size: 1.1rem;">Autonomous agent with evaluation loops and continuous improvement</p>
+            </div>
+
+            <div class="project-tech">
+                <span class="tech-tag">LangGraph</span>
+                <span class="tech-tag">LangChain</span>
+                <span class="tech-tag">Pydantic</span>
+                <span class="tech-tag">Playwright</span>
+                <span class="tech-tag">Gradio</span>
+                <span class="tech-tag">OpenAI GPT-4</span>
+            </div>
+
+            <div class="project-features">
+                <h4 style="color: var(--text-primary); margin: 1.5rem 0 1rem;">Key Features:</h4>
+                <ul>
+                    <li>Multi-agent workflow with evaluation loop (worker & evaluator agents)</li>
+                    <li>Structured Outputs with type-safe evaluation using Pydantic</li>
+                    <li>Advanced State Management with TypedDict</li>
+                    <li>Conditional Routing Logic for intelligent decision-making</li>
+                    <li>Tool Integration: Playwright browser automation</li>
+                    <li>Interactive Gradio Interface for agent interaction</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Project 4: Autonomous Trading System -->
+        <div class="project-card">
+            <div class="project-header">
+                <h2 class="project-title">📈 Autonomous Trading System with MCP</h2>
+                <p style="color: var(--text-secondary); font-size: 1.1rem;">Equity trading simulation with Model Context Protocol integration</p>
+            </div>
+
+            <div class="project-tech">
+                <span class="tech-tag">Model Context Protocol</span>
+                <span class="tech-tag">OpenAI Agents SDK</span>
+                <span class="tech-tag">Polygon.io API</span>
+                <span class="tech-tag">Brave Search API</span>
+                <span class="tech-tag">AsyncIO</span>
+            </div>
+
+            <div class="project-features">
+                <h4 style="color: var(--text-primary); margin: 1.5rem 0 1rem;">Key Features:</h4>
+                <ul>
+                    <li>Multi-Server MCP Architecture: 6 different MCP servers for comprehensive trading</li>
+                    <li>Agents and Agents as Tools: Trading agent, researcher agent as tool</li>
+                    <li>Context-aware agent setup for market analysis</li>
+                    <li>Comprehensive observability & tracing</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Interactive Chatbot Section -->
+        <div class="chatbot-section">
+            <h2>💬 Chat with My AI Assistant</h2>
+            <p style="color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 2rem;">
+                Ask questions about my experience, projects, and capabilities
+            </p>
+
+            <div class="chatbot-placeholder">
+                <h3>🚧 Chatbot Coming Soon!</h3>
+                <p style="color: var(--text-secondary); margin-top: 1rem;">
+                    Currently deploying the AI chatbot to Hugging Face Spaces.<br>
+                    Check back soon to interact with my AI assistant!
+                </p>
+                <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
+                    The chatbot will answer questions about my professional background,<br>
+                    technical skills, projects, and experience using AI-powered natural language understanding.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Zain Razak</h3>
+                    <p>AI-Focused Product Manager</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="experience.html">Experience</a></li>
+                        <li><a href="certifications.html">Certifications</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="mailto:zainrazak007@gmail.com">Email</a></li>
+                        <li><a href="https://www.linkedin.com/in/zainrazak/" target="_blank">LinkedIn</a></li>
+                        <li><a href="https://github.com/zainrazak" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Zain Razak. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

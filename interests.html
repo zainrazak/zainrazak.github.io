@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zain Razak's Personal Interests - Basketball, Food, AI Tools">
+    <title>Personal Interests | Zain Razak</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .interests-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+        }
+
+        .interests-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5% 5rem;
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .interest-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interest-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .interest-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary-color);
+            box-shadow: 0 25px 70px rgba(79, 70, 229, 0.3);
+        }
+
+        .interest-card:hover::before {
+            opacity: 1;
+        }
+
+        .interest-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .interest-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+
+        .interest-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .interest-connection {
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .fun-fact {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(124, 58, 237, 0.15));
+            border-radius: 16px;
+            padding: 3rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .fun-fact h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .fun-fact p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .interests-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">ZR</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="interests.html" class="active">Interests</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="interests-hero">
+        <div class="hero-content">
+            <h1>Beyond the Code</h1>
+            <p class="tagline">Life is More Than <span>Just Work</span></p>
+        </div>
+    </section>
+
+    <div class="interests-container">
+        <div class="interests-grid">
+            <!-- Basketball -->
+            <div class="interest-card">
+                <div class="interest-icon">🏀</div>
+                <h2 class="interest-title">Basketball</h2>
+                <p class="interest-description">
+                    As an unathletic man past his prime, I still enjoy playing basketball and holding my title as the local LA Fitness legend. The court is where I unwind, compete, and stay active—even if my jump shot isn't what it used to be!
+                </p>
+                <div class="interest-connection">
+                    <strong>Connection to work:</strong> Basketball taught me teamwork, strategy under pressure, and the importance of consistent practice—skills that translate directly to product management.
+                </div>
+            </div>
+
+            <!-- Food & Restaurants -->
+            <div class="interest-card">
+                <div class="interest-icon">🍜</div>
+                <h2 class="interest-title">Culinary Adventures</h2>
+                <p class="interest-description">
+                    Thoroughly enjoying different culinary cuisines, I love receiving and recommending restaurants. Every weekend I make it a point to try a new restaurant that I've seen from TikTok. Food is my way of exploring cultures and experiencing new things.
+                </p>
+                <div class="interest-connection">
+                    <strong>Connection to work:</strong> Exploring new restaurants teaches me to appreciate diverse perspectives and stay curious—essential for understanding user needs and market trends.
+                </div>
+            </div>
+
+            <!-- AI Tools -->
+            <div class="interest-card">
+                <div class="interest-icon">🤖</div>
+                <h2 class="interest-title">Exploring AI Tools</h2>
+                <p class="interest-description">
+                    With so many AI tools available, identifying the best ones has become more difficult. I'm constantly experimenting with new AI platforms, agents, and frameworks to stay at the cutting edge. Let me know which ones you prefer, and I'll do the same!
+                </p>
+                <div class="interest-connection">
+                    <strong>Connection to work:</strong> Staying current with AI tools isn't just a hobby—it's essential for my role as an AI-focused Product Manager. This hands-on exploration informs my product decisions.
+                </div>
+            </div>
+        </div>
+
+        <!-- Fun Fact Section -->
+        <div class="fun-fact">
+            <h3>💡 Fun Fact</h3>
+            <p>
+                When I'm not building AI agents or managing enterprise programs, you'll find me debugging my fantasy basketball team's performance, hunting down the perfect birria tacos, or testing the latest LLM to see if it can beat my chatbot at answering questions about my career. (Spoiler: It can't... yet. 😄)
+            </p>
+        </div>
+
+        <!-- CTA Section -->
+        <div style="text-align: center; margin-top: 5rem;">
+            <h2 style="margin-bottom: 1.5rem;">Let's Connect!</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;">
+                Whether you want to discuss AI, grab food recommendations, or talk shop about product management
+            </p>
+            <div class="cta-buttons">
+                <a href="mailto:zainrazak007@gmail.com" class="btn btn-primary">Email Me</a>
+                <a href="https://www.linkedin.com/in/zainrazak/" target="_blank" class="btn btn-secondary">Connect on LinkedIn</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Zain Razak</h3>
+                    <p>AI-Focused Product Manager</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="experience.html">Experience</a></li>
+                        <li><a href="certifications.html">Certifications</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="mailto:zainrazak007@gmail.com">Email</a></li>
+                        <li><a href="https://www.linkedin.com/in/zainrazak/" target="_blank">LinkedIn</a></li>
+                        <li><a href="https://github.com/zainrazak" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Zain Razak. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

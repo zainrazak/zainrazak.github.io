@@ -99,22 +99,72 @@
             margin-bottom: 1.5rem;
         }
 
-        .chatbot-placeholder {
-            background: var(--bg-card);
-            border: 2px dashed var(--border-color);
-            border-radius: 12px;
-            padding: 4rem 2rem;
+        .chatbot-embed {
             margin-top: 2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(79, 70, 229, 0.3);
         }
 
-        .chatbot-placeholder h3 {
+        .chatbot-embed iframe {
+            border: none;
+            border-radius: 12px;
+        }
+
+        .chatbot-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .chatbot-info-item {
+            text-align: center;
+        }
+
+        .chatbot-info-item span {
+            display: block;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .chatbot-info-item small {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .chatbot-cta {
+            margin-top: 1.5rem;
+        }
+
+        .chatbot-cta a {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .chatbot-cta a:hover {
+            background: var(--primary-color);
+            color: white;
         }
 
         @media (max-width: 768px) {
             .project-card {
                 padding: 2rem;
+            }
+
+            .chatbot-embed iframe {
+                height: 500px;
             }
         }
     </style>
@@ -267,20 +317,42 @@
         <!-- Interactive Chatbot Section -->
         <div class="chatbot-section">
             <h2>💬 Chat with My AI Assistant</h2>
-            <p style="color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 2rem;">
+            <p style="color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 1rem;">
                 Ask questions about my experience, projects, and capabilities
             </p>
 
-            <div class="chatbot-placeholder">
-                <h3>🚧 Chatbot Coming Soon!</h3>
-                <p style="color: var(--text-secondary); margin-top: 1rem;">
-                    Currently deploying the AI chatbot to Hugging Face Spaces.<br>
-                    Check back soon to interact with my AI assistant!
-                </p>
-                <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
-                    The chatbot will answer questions about my professional background,<br>
-                    technical skills, projects, and experience using AI-powered natural language understanding.
-                </p>
+            <!-- Embedded Hugging Face Chatbot -->
+            <div class="chatbot-embed">
+                <iframe
+                    src="https://zraza-zainrazak-assistant.hf.space"
+                    width="100%"
+                    height="650"
+                    frameborder="0"
+                    allow="microphone"
+                    title="Zain Razak AI Career Assistant"
+                ></iframe>
+            </div>
+
+            <!-- Chatbot Info -->
+            <div class="chatbot-info">
+                <div class="chatbot-info-item">
+                    <span>GPT-4o</span>
+                    <small>Powered by OpenAI</small>
+                </div>
+                <div class="chatbot-info-item">
+                    <span>Gradio</span>
+                    <small>Interface Framework</small>
+                </div>
+                <div class="chatbot-info-item">
+                    <span>RAG-Enhanced</span>
+                    <small>Knowledge Base</small>
+                </div>
+            </div>
+
+            <div class="chatbot-cta">
+                <a href="https://huggingface.co/spaces/Zraza/Zainrazak-Assistant" target="_blank">
+                    Open in Full Screen ↗
+                </a>
             </div>
         </div>
     </div>

@@ -349,24 +349,45 @@
             </div>
 
             <div class="project-tech">
-                <span class="tech-tag">LangGraph</span>
-                <span class="tech-tag">LangChain</span>
+                <span class="tech-tag">OpenAI API</span>
+                <span class="tech-tag">Worker-Evaluator Pattern</span>
                 <span class="tech-tag">Pydantic</span>
-                <span class="tech-tag">Playwright</span>
                 <span class="tech-tag">Gradio</span>
-                <span class="tech-tag">OpenAI GPT-4</span>
+                <span class="tech-tag">GPT-4o-mini</span>
             </div>
 
             <div class="project-features">
                 <h4 style="color: var(--text-primary); margin: 1.5rem 0 1rem;">Key Features:</h4>
                 <ul>
-                    <li>Multi-agent workflow with evaluation loop (worker & evaluator agents)</li>
-                    <li>Structured Outputs with type-safe evaluation using Pydantic</li>
-                    <li>Advanced State Management with TypedDict</li>
-                    <li>Conditional Routing Logic for intelligent decision-making</li>
-                    <li>Tool Integration: Playwright browser automation</li>
-                    <li>Interactive Gradio Interface for agent interaction</li>
+                    <li>Multi-agent workflow with evaluation loop (Worker & Evaluator agents)</li>
+                    <li>Self-improving feedback loop: Worker improves based on Evaluator feedback</li>
+                    <li>Custom success criteria: Define what "done" looks like for each task</li>
+                    <li>Iterative refinement: Up to 3 improvement cycles per request</li>
+                    <li>Structured evaluation with JSON-based assessment</li>
+                    <li>Interactive Gradio interface for real-time agent interaction</li>
                 </ul>
+                <p style="color: var(--text-muted); margin-top: 1.5rem; font-size: 0.9rem; font-style: italic;">
+                    ⚠️ Note: Due to Hugging Face compatibility issues with LangGraph/Playwright, the deployed version uses direct OpenAI API calls instead of the original LangGraph implementation.
+                </p>
+            </div>
+
+            <!-- Live Demo Embed -->
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+                <h4 style="color: var(--text-primary); margin-bottom: 1rem;">🚀 Try It Live:</h4>
+                <div class="chatbot-embed">
+                    <iframe
+                        src="https://zraza-sidekick.hf.space"
+                        width="100%"
+                        height="600"
+                        frameborder="0"
+                        title="The Sidekick"
+                    ></iframe>
+                </div>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <a href="https://huggingface.co/spaces/Zraza/SideKick" target="_blank" style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem;">
+                        Open in Full Screen ↗
+                    </a>
+                </div>
             </div>
         </div>
 

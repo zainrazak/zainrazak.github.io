@@ -395,7 +395,7 @@
         <div class="project-card">
             <div class="project-header">
                 <h2 class="project-title">📈 Autonomous Trading System with MCP</h2>
-                <p style="color: var(--text-secondary); font-size: 1.1rem;">Equity trading simulation with Model Context Protocol integration</p>
+                <p style="color: var(--text-secondary); font-size: 1.1rem;">Multi-agent equity trading simulation with Model Context Protocol architecture</p>
             </div>
 
             <div class="project-tech">
@@ -403,17 +403,45 @@
                 <span class="tech-tag">OpenAI Agents SDK</span>
                 <span class="tech-tag">Polygon.io API</span>
                 <span class="tech-tag">Brave Search API</span>
+                <span class="tech-tag">Multi-Model (GPT/DeepSeek/Gemini/Grok)</span>
+                <span class="tech-tag">FastMCP</span>
                 <span class="tech-tag">AsyncIO</span>
+                <span class="tech-tag">SQLite</span>
             </div>
 
             <div class="project-features">
                 <h4 style="color: var(--text-primary); margin: 1.5rem 0 1rem;">Key Features:</h4>
                 <ul>
-                    <li>Multi-Server MCP Architecture: 6 different MCP servers for comprehensive trading</li>
-                    <li>Agents and Agents as Tools: Trading agent, researcher agent as tool</li>
-                    <li>Context-aware agent setup for market analysis</li>
-                    <li>Comprehensive observability & tracing</li>
+                    <li>Multi-Server MCP Architecture: 6 MCP servers (Accounts, Market, Push, Brave Search, Fetch, Memory Graph)</li>
+                    <li>4 AI Traders with unique strategies: Warren (Value), George (Macro), Ray (Risk Parity), Cathie (Crypto)</li>
+                    <li>Multi-Model Architecture: Each trader uses a different LLM (GPT-4.1, DeepSeek V3, Gemini 2.5, Grok 3)</li>
+                    <li>Researcher Agent as Tool: Nested agent pattern for market research</li>
+                    <li>Real-time Market Data: Polygon.io integration for live stock prices</li>
+                    <li>Knowledge Graph Memory: Persistent entity storage across trading sessions</li>
+                    <li>Comprehensive Observability: Full tracing and logging of agent decisions</li>
                 </ul>
+                <p style="color: var(--text-muted); margin-top: 1.5rem; font-size: 0.9rem; font-style: italic;">
+                    ⚠️ Note: The demo below shows simulated data and architecture diagrams. The full system requires local deployment with API keys and MCP servers.
+                </p>
+            </div>
+
+            <!-- Live Demo Embed -->
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+                <h4 style="color: var(--text-primary); margin-bottom: 1rem;">🚀 Architecture Demo:</h4>
+                <div class="chatbot-embed">
+                    <iframe
+                        src="https://zraza-trading-system.hf.space"
+                        width="100%"
+                        height="700"
+                        frameborder="0"
+                        title="Autonomous Trading System"
+                    ></iframe>
+                </div>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <a href="https://huggingface.co/spaces/Zraza/Trading-System" target="_blank" style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem;">
+                        Open in Full Screen ↗
+                    </a>
+                </div>
             </div>
         </div>
     </div>

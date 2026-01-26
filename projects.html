@@ -167,6 +167,99 @@
                 height: 500px;
             }
         }
+
+        /* Automation Workflows 3-Column Grid */
+        .automation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .automation-card {
+            background: rgba(79, 70, 229, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .automation-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);
+        }
+
+        .automation-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .automation-card .automation-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .automation-card .project-tech {
+            margin: 1rem 0;
+        }
+
+        .automation-card .tech-tag {
+            font-size: 0.75rem;
+            padding: 0.35rem 0.7rem;
+        }
+
+        .automation-image {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .automation-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .automation-features {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .automation-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .automation-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 1024px) {
+            .automation-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .automation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -236,6 +329,82 @@
                 <a href="https://huggingface.co/spaces/Zraza/Zainrazak-Assistant" target="_blank">
                     Open in Full Screen ↗
                 </a>
+            </div>
+        </div>
+
+        <!-- Automation Workflows Section - 3 Column Grid -->
+        <div class="project-card">
+            <div class="project-header" style="text-align: center; margin-bottom: 2rem;">
+                <h2 class="project-title">⚡ Automation Workflows</h2>
+                <p style="color: var(--text-secondary); font-size: 1.1rem;">n8n-powered intelligent automation solutions for real-world business challenges</p>
+            </div>
+
+            <div class="automation-grid">
+                <!-- Column 1: Lead Qualifying -->
+                <div class="automation-card">
+                    <div class="automation-image">
+                        <img src="assets/images/lead-qualifying-workflow.webp" alt="Lead Qualifying Automation Workflow">
+                    </div>
+                    <h3>Lead Qualifying Automation</h3>
+                    <p class="automation-desc">Intelligent lead capture and qualification system for real estate agencies</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">n8n</span>
+                        <span class="tech-tag">OpenAI</span>
+                        <span class="tech-tag">Google Sheets</span>
+                        <span class="tech-tag">Gmail</span>
+                        <span class="tech-tag">Cal.com</span>
+                    </div>
+                    <ul class="automation-features">
+                        <li>AI-powered lead classification (hot/warm/cold)</li>
+                        <li>Webhook capture from website to CRM</li>
+                        <li>Google Sheets logging + Pipedrive sync</li>
+                        <li>Automated nurture emails for warm/cold leads</li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Appointment Booking -->
+                <div class="automation-card">
+                    <div class="automation-image">
+                        <img src="assets/images/appointment-booking-workflow.webp" alt="Appointment Booking Automation Workflow">
+                    </div>
+                    <h3>Automated Appointment Booking</h3>
+                    <p class="automation-desc">End-to-end appointment lifecycle automation from booking to reminders</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">n8n</span>
+                        <span class="tech-tag">Gemini AI</span>
+                        <span class="tech-tag">Google Sheets</span>
+                        <span class="tech-tag">Gmail</span>
+                        <span class="tech-tag">Telegram</span>
+                    </div>
+                    <ul class="automation-features">
+                        <li>Auto booking email on website conversion</li>
+                        <li>Real-time Telegram alerts to sales team</li>
+                        <li>Confirmation & reminder email sequences</li>
+                        <li>80% reduction in manual coordination</li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: AI Voice Agent -->
+                <div class="automation-card">
+                    <div class="automation-image">
+                        <img src="assets/images/ai-voice-agent-workflow.webp" alt="AI Voice Agent Workflow">
+                    </div>
+                    <h3>AI Voice Agent</h3>
+                    <p class="automation-desc">24/7 virtual assistant with voice AI for call handling and scheduling</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">n8n</span>
+                        <span class="tech-tag">ElevenLabs</span>
+                        <span class="tech-tag">OpenAI</span>
+                        <span class="tech-tag">Cal.com</span>
+                        <span class="tech-tag">Gmail</span>
+                    </div>
+                    <ul class="automation-features">
+                        <li>ElevenLabs voice + OpenAI intent understanding</li>
+                        <li>Cal.com booking, rescheduling & cancellations</li>
+                        <li>Lead classification with instant CEO alerts</li>
+                        <li>24/7 call handling + Google Sheets logging</li>
+                    </ul>
+                </div>
             </div>
         </div>
 

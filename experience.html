@@ -3,14 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zain Razak's Professional Experience - Product Manager at Accenture">
     <title>Experience | Zain Razak</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .experience-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+        }
+        
+        .experience-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 5% 5rem;
+        }
+        
+        .experience-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .experience-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(79, 70, 229, 0.3);
+        }
+        
+        .job-header {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+        
+        .job-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .company {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .duration {
+            color: var(--primary-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .responsibilities h4 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .responsibilities ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .responsibilities li {
+            padding: 0.7rem 0;
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .responsibilities li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .tech-tag {
+            padding: 0.4rem 0.9rem;
+            background: rgba(79, 70, 229, 0.15);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .education-section {
+            margin-top: 3rem;
+            padding: 0 5%;
+        }
+        
+        .education-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .education-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+        
+        .education-card h3 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .education-card .degree {
+            color: var(--text-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .experience-card {
+                padding: 1.5rem;
+            }
+            .job-title {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
+    <div class="bg-grid"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    
+    <nav id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">ZR</a>
+            <a href="index.html" class="logo">ZR</a>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="experience.html" class="active">Experience</a></li>
@@ -34,143 +186,131 @@
     </section>
 
     <div class="experience-container">
-        <div class="timeline">
-            <!-- Position 1: Senior Product Manager, AI & Data Products -->
-            <div class="experience-card">
-                <div class="experience-content">
-                    <div class="job-header">
-                        <h2 class="job-title">Senior Product Manager, AI & Data Products</h2>
-                        <p class="company">Accenture (Fortune 50 Entertainment Company)</p>
-                        <p class="duration">October 2024 - Present</p>
-                    </div>
-
-                    <div class="responsibilities">
-                        <h4>Key Responsibilities</h4>
-                        <ul>
-                            <li>Defined strategic direction for enterprise-wide Generative AI assistant aligned with organizational goals by leading 0-to-1 product development, establishing product roadmap, tailoring product narrative for executive stakeholders, and championing innovative AI concepts to launch pilot phase within 1 year</li>
-                            <li>Reduced knowledge access time from hours to seconds for 400+ internal users by architecting and deploying a data platform integrating 52+ different data sources enabling retrieval-augmented generation (RAG) capabilities</li>
-                            <li>Improved data accuracy by 30% across enterprise systems by creating data taxonomy and piloting an intelligent document processing solution using ML models (AWS SageMaker) to cleanse and extract 10,000+ data records</li>
-                            <li>Delivered 80+ user stories with measurable business outcomes by establishing a quality assurance framework, owning solution design, and driving cross-functional collaboration across AI/ML, data engineering, product, and offshore development teams using JIRA</li>
-                        </ul>
-                    </div>
-
-                    <div class="tech-tags">
-                        <span class="tech-tag">Generative AI</span>
-                        <span class="tech-tag">RAG</span>
-                        <span class="tech-tag">AWS SageMaker</span>
-                        <span class="tech-tag">Product Strategy</span>
-                        <span class="tech-tag">JIRA</span>
-                        <span class="tech-tag">Data Engineering</span>
-                    </div>
-                </div>
+        <!-- Position 1: Senior Product Manager, AI & Data Products -->
+        <div class="experience-card">
+            <div class="job-header">
+                <h2 class="job-title">Senior Product Manager, AI & Data Products</h2>
+                <p class="company">Accenture (Fortune 50 Entertainment Company)</p>
+                <p class="duration">October 2024 - Present</p>
             </div>
 
-            <!-- Position 2: Product Manager, Enterprise Platform Solutions -->
-            <div class="experience-card">
-                <div class="experience-content">
-                    <div class="job-header">
-                        <h2 class="job-title">Product Manager, Enterprise Platform Solutions</h2>
-                        <p class="company">Accenture (Fortune 50 Technology Company)</p>
-                        <p class="duration">August 2022 - September 2024</p>
-                    </div>
-
-                    <div class="responsibilities">
-                        <h4>Key Responsibilities</h4>
-                        <ul>
-                            <li>Achieved 100% product adoption across 100+ global data centers, as measured by full legacy system migration completion, by directing end-to-end product roadmap and deployment strategy for a Data Center Visitor Management software from requirements gathering through launch</li>
-                            <li>Accelerated go-to-market execution by partnering with engineering, vendors, offshore, and operations teams to align on product vision, develop intuitive onboarding flows, and execute integrated launch plans across 3 global regions</li>
-                            <li>Prioritized and delivered 102+ feature requests/bug fixes by owning the product backlog, leveraging data analytics, and using customer engagement surveys to determine release priorities</li>
-                            <li>Drove enterprise-wide change management by designing custom learning curriculum, delivering 50+ live recorded training sessions to 600+ users, and establishing a train-the-trainer program</li>
-                            <li>Built automated performance dashboards using BigQuery/SQL and Looker to monitor KPIs, analyze trends, and deliver weekly insights to senior leadership that directly influenced program/product strategy</li>
-                        </ul>
-                    </div>
-
-                    <div class="tech-tags">
-                        <span class="tech-tag">Product Roadmap</span>
-                        <span class="tech-tag">BigQuery</span>
-                        <span class="tech-tag">SQL</span>
-                        <span class="tech-tag">Looker</span>
-                        <span class="tech-tag">Change Management</span>
-                        <span class="tech-tag">Global Deployment</span>
-                    </div>
-                </div>
+            <div class="responsibilities">
+                <h4>Key Responsibilities</h4>
+                <ul>
+                    <li>Defined strategic direction for enterprise-wide Generative AI assistant aligned with organizational goals by leading 0-to-1 product development, establishing product roadmap, tailoring product narrative for executive stakeholders, and championing innovative AI concepts to launch pilot phase within 1 year</li>
+                    <li>Reduced knowledge access time from hours to seconds for 400+ internal users by architecting and deploying a data platform integrating 52+ different data sources enabling retrieval-augmented generation (RAG) capabilities</li>
+                    <li>Improved data accuracy by 30% across enterprise systems by creating data taxonomy and piloting an intelligent document processing solution using ML models (AWS SageMaker) to cleanse and extract 10,000+ data records</li>
+                    <li>Delivered 80+ user stories with measurable business outcomes by establishing a quality assurance framework, owning solution design, and driving cross-functional collaboration across AI/ML, data engineering, product, and offshore development teams using JIRA</li>
+                </ul>
             </div>
 
-            <!-- Position 3: Salesforce Product Manager -->
-            <div class="experience-card">
-                <div class="experience-content">
-                    <div class="job-header">
-                        <h2 class="job-title">Salesforce Product Manager</h2>
-                        <p class="company">Accenture (Fortune 50 Technology Company)</p>
-                        <p class="duration">May 2021 - August 2022</p>
-                    </div>
+            <div class="tech-tags">
+                <span class="tech-tag">Generative AI</span>
+                <span class="tech-tag">RAG</span>
+                <span class="tech-tag">AWS SageMaker</span>
+                <span class="tech-tag">Product Strategy</span>
+                <span class="tech-tag">JIRA</span>
+                <span class="tech-tag">Data Engineering</span>
+            </div>
+        </div>
 
-                    <div class="responsibilities">
-                        <h4>Key Responsibilities</h4>
-                        <ul>
-                            <li>Led end-to-end Salesforce CRM implementation and legacy system migration under $400K budget by owning the product roadmap, coordinating a cross-functional team of 8 (business analysts, developers, QA), and managing the full product lifecycle from discovery through production release to achieve Q2/Q3 organizational objectives</li>
-                            <li>Achieved SOC compliance across 5 pilot environments with zero critical vulnerabilities by determining data classification of Salesforce objects and fields, correcting 22 critical security flaws through configuration optimization and code audit</li>
-                            <li>Created 116+ user stories to design and implement custom Salesforce solutions including automated reports, flows, and alerts that streamlined daily operations, eliminated manual processes, and reduced team workload by 30%</li>
-                            <li>Managed end-to-end change management including training curriculum development, stakeholder communications, RFP creation, and vendor contract negotiations to ensure seamless adoption and delivery of Salesforce solutions</li>
-                        </ul>
-                    </div>
-
-                    <div class="tech-tags">
-                        <span class="tech-tag">Salesforce CRM</span>
-                        <span class="tech-tag">SOC Compliance</span>
-                        <span class="tech-tag">Budget Management</span>
-                        <span class="tech-tag">Team Leadership</span>
-                        <span class="tech-tag">Vendor Management</span>
-                    </div>
-                </div>
+        <!-- Position 2: Product Manager, Enterprise Platform Solutions -->
+        <div class="experience-card">
+            <div class="job-header">
+                <h2 class="job-title">Product Manager, Enterprise Platform Solutions</h2>
+                <p class="company">Accenture (Fortune 50 Technology Company)</p>
+                <p class="duration">August 2022 - September 2024</p>
             </div>
 
-            <!-- Position 4: Product Operations Analyst II -->
-            <div class="experience-card">
-                <div class="experience-content">
-                    <div class="job-header">
-                        <h2 class="job-title">Product Operations Analyst II</h2>
-                        <p class="company">Stretto</p>
-                        <p class="duration">July 2019 - March 2021</p>
-                    </div>
+            <div class="responsibilities">
+                <h4>Key Responsibilities</h4>
+                <ul>
+                    <li>Achieved 100% product adoption across 100+ global data centers, as measured by full legacy system migration completion, by directing end-to-end product roadmap and deployment strategy for a Data Center Visitor Management software from requirements gathering through launch</li>
+                    <li>Accelerated go-to-market execution by partnering with engineering, vendors, offshore, and operations teams to align on product vision, develop intuitive onboarding flows, and execute integrated launch plans across 3 global regions</li>
+                    <li>Prioritized and delivered 102+ feature requests/bug fixes by owning the product backlog, leveraging data analytics, and using customer engagement surveys to determine release priorities</li>
+                    <li>Drove enterprise-wide change management by designing custom learning curriculum, delivering 50+ live recorded training sessions to 600+ users, and establishing a train-the-trainer program</li>
+                    <li>Built automated performance dashboards using BigQuery/SQL and Looker to monitor KPIs, analyze trends, and deliver weekly insights to senior leadership that directly influenced program/product strategy</li>
+                </ul>
+            </div>
 
-                    <div class="responsibilities">
-                        <h4>Key Responsibilities</h4>
-                        <ul>
-                            <li>Increased operational efficiency by 40% and accelerated executive decision-making by building automated reporting solutions and dashboards using SQL, Power BI, and Salesforce to deliver actionable data insights, identify KPIs, and enable data-driven strategic planning across banking operations</li>
-                            <li>Achieved 100% client go-live success rate across 600+ banking clients, as measured by on-time deployment milestones, by leading full-cycle software rollout from initial onboarding through hardware tracking and post-launch support</li>
-                            <li>Delivered multiple in-house banking software applications and hardware designs by directing product development as part of a strategic business initiative and collaborating cross-functionally with IT, Business, Bank Partners, FISERV, FIS, and end-clients</li>
-                            <li>Reduced requirement ambiguity and rework cycles by 25% by authoring comprehensive Business Requirements Documents (BRDs) that translated executive strategy into technical specifications and conducting user acceptance testing with QA and end-users</li>
-                        </ul>
-                    </div>
+            <div class="tech-tags">
+                <span class="tech-tag">Product Roadmap</span>
+                <span class="tech-tag">BigQuery</span>
+                <span class="tech-tag">SQL</span>
+                <span class="tech-tag">Looker</span>
+                <span class="tech-tag">Change Management</span>
+                <span class="tech-tag">Global Deployment</span>
+            </div>
+        </div>
 
-                    <div class="tech-tags">
-                        <span class="tech-tag">SQL</span>
-                        <span class="tech-tag">Power BI</span>
-                        <span class="tech-tag">Salesforce</span>
-                        <span class="tech-tag">Banking Operations</span>
-                        <span class="tech-tag">BRD Documentation</span>
-                        <span class="tech-tag">UAT</span>
-                    </div>
-                </div>
+        <!-- Position 3: Salesforce Product Manager -->
+        <div class="experience-card">
+            <div class="job-header">
+                <h2 class="job-title">Salesforce Product Manager</h2>
+                <p class="company">Accenture (Fortune 50 Technology Company)</p>
+                <p class="duration">May 2021 - August 2022</p>
+            </div>
+
+            <div class="responsibilities">
+                <h4>Key Responsibilities</h4>
+                <ul>
+                    <li>Led end-to-end Salesforce CRM implementation and legacy system migration under $400K budget by owning the product roadmap, coordinating a cross-functional team of 8 (business analysts, developers, QA), and managing the full product lifecycle from discovery through production release to achieve Q2/Q3 organizational objectives</li>
+                    <li>Achieved SOC compliance across 5 pilot environments with zero critical vulnerabilities by determining data classification of Salesforce objects and fields, correcting 22 critical security flaws through configuration optimization and code audit</li>
+                    <li>Created 116+ user stories to design and implement custom Salesforce solutions including automated reports, flows, and alerts that streamlined daily operations, eliminated manual processes, and reduced team workload by 30%</li>
+                    <li>Managed end-to-end change management including training curriculum development, stakeholder communications, RFP creation, and vendor contract negotiations to ensure seamless adoption and delivery of Salesforce solutions</li>
+                </ul>
+            </div>
+
+            <div class="tech-tags">
+                <span class="tech-tag">Salesforce CRM</span>
+                <span class="tech-tag">SOC Compliance</span>
+                <span class="tech-tag">Budget Management</span>
+                <span class="tech-tag">Team Leadership</span>
+                <span class="tech-tag">Vendor Management</span>
+            </div>
+        </div>
+
+        <!-- Position 4: Product Operations Analyst II -->
+        <div class="experience-card">
+            <div class="job-header">
+                <h2 class="job-title">Product Operations Analyst II</h2>
+                <p class="company">Stretto</p>
+                <p class="duration">July 2019 - March 2021</p>
+            </div>
+
+            <div class="responsibilities">
+                <h4>Key Responsibilities</h4>
+                <ul>
+                    <li>Increased operational efficiency by 40% and accelerated executive decision-making by building automated reporting solutions and dashboards using SQL, Power BI, and Salesforce to deliver actionable data insights, identify KPIs, and enable data-driven strategic planning across banking operations</li>
+                    <li>Achieved 100% client go-live success rate across 600+ banking clients, as measured by on-time deployment milestones, by leading full-cycle software rollout from initial onboarding through hardware tracking and post-launch support</li>
+                    <li>Delivered multiple in-house banking software applications and hardware designs by directing product development as part of a strategic business initiative and collaborating cross-functionally with IT, Business, Bank Partners, FISERV, FIS, and end-clients</li>
+                    <li>Reduced requirement ambiguity and rework cycles by 25% by authoring comprehensive Business Requirements Documents (BRDs) that translated executive strategy into technical specifications and conducting user acceptance testing with QA and end-users</li>
+                </ul>
+            </div>
+
+            <div class="tech-tags">
+                <span class="tech-tag">SQL</span>
+                <span class="tech-tag">Power BI</span>
+                <span class="tech-tag">Salesforce</span>
+                <span class="tech-tag">Banking Operations</span>
+                <span class="tech-tag">BRD Documentation</span>
+                <span class="tech-tag">UAT</span>
             </div>
         </div>
     </div>
 
     <!-- Education Section -->
     <section class="education-section">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="education-card">
-                <h3>University of California, Davis</h3>
-                <p class="degree">Bachelor of Science in Information Systems & Technology Management</p>
-            </div>
+        <h2>Education</h2>
+        <div class="education-card">
+            <h3>University of California, Davis</h3>
+            <p class="degree">Bachelor of Science in Information Systems & Technology Management</p>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-grid">
+    <footer>
+        <div class="container">
+            <div class="footer-content">
                 <div class="footer-section">
                     <h3>Zain Razak</h3>
                     <p>AI-Focused Product Manager</p>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Genie</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #9CA3AF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.25rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #9CA3AF;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            border-radius: 16px;
+            padding: 1.75rem;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .type-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .type-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.6rem 0.25rem;
+            background: transparent;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            border-radius: 10px;
+            color: #9CA3AF;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: all 0.2s;
+        }
+
+        .type-btn:hover { border-color: #4F46E5; color: #ffffff; }
+
+        .type-btn.active {
+            background: rgba(79, 70, 229, 0.2);
+            border-color: #4F46E5;
+            color: #ffffff;
+        }
+
+        .type-btn .icon { font-size: 1.1rem; }
+
+        label {
+            display: block;
+            font-size: 0.8rem;
+            color: #9CA3AF;
+            margin-bottom: 0.4rem;
+            margin-top: 1rem;
+        }
+
+        label:first-of-type { margin-top: 0; }
+
+        input, select {
+            width: 100%;
+            padding: 0.65rem 0.9rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus { border-color: #4F46E5; }
+        input::placeholder { color: #6B7280; }
+        select option { background: #111; }
+
+        .wifi-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .generate-btn {
+            width: 100%;
+            margin-top: 1.25rem;
+            padding: 0.75rem;
+            background: #4F46E5;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .generate-btn:hover { background: #4338CA; transform: translateY(-1px); }
+        .generate-btn:active { transform: translateY(0); }
+
+        .output-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            border-radius: 16px;
+            padding: 1.75rem;
+            width: 100%;
+            max-width: 480px;
+            margin-top: 1.25rem;
+            display: none;
+            text-align: center;
+        }
+
+        .output-card.visible { display: block; }
+
+        #qr-container {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        #qr-container canvas,
+        #qr-container img {
+            border-radius: 8px;
+            border: 4px solid #ffffff;
+        }
+
+        .qr-label {
+            font-size: 0.8rem;
+            color: #9CA3AF;
+            margin-bottom: 1rem;
+            word-break: break-all;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 0.65rem 1.5rem;
+            background: transparent;
+            border: 1px solid #4F46E5;
+            border-radius: 8px;
+            color: #4F46E5;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .download-btn:hover { background: #4F46E5; color: #ffffff; }
+
+        .footer-link {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: #6B7280;
+            text-align: center;
+        }
+
+        .footer-link a { color: #4F46E5; text-decoration: none; }
+        .footer-link a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <h1>📱 QR Code Genie</h1>
+    <p class="subtitle">Generate QR codes for URLs, text, email, phone & Wi-Fi</p>
+
+    <div class="card">
+        <!-- Type selector -->
+        <div class="type-grid">
+            <button class="type-btn active" data-type="url">
+                <span class="icon">🔗</span>URL
+            </button>
+            <button class="type-btn" data-type="text">
+                <span class="icon">📝</span>Text
+            </button>
+            <button class="type-btn" data-type="email">
+                <span class="icon">✉️</span>Email
+            </button>
+            <button class="type-btn" data-type="phone">
+                <span class="icon">📞</span>Phone
+            </button>
+            <button class="type-btn" data-type="wifi">
+                <span class="icon">📶</span>Wi-Fi
+            </button>
+        </div>
+
+        <!-- URL -->
+        <div id="form-url">
+            <label>Website URL</label>
+            <input type="url" id="url-input" placeholder="https://example.com">
+        </div>
+
+        <!-- Text -->
+        <div id="form-text" style="display:none">
+            <label>Your Text</label>
+            <input type="text" id="text-input" placeholder="Enter any text...">
+        </div>
+
+        <!-- Email -->
+        <div id="form-email" style="display:none">
+            <label>Email Address</label>
+            <input type="email" id="email-input" placeholder="name@example.com">
+            <label>Subject (optional)</label>
+            <input type="text" id="email-subject" placeholder="Hello!">
+        </div>
+
+        <!-- Phone -->
+        <div id="form-phone" style="display:none">
+            <label>Phone Number</label>
+            <input type="tel" id="phone-input" placeholder="+1 555 000 0000">
+        </div>
+
+        <!-- WiFi -->
+        <div id="form-wifi" style="display:none">
+            <label>Network Name (SSID)</label>
+            <input type="text" id="wifi-ssid" placeholder="MyNetwork">
+            <label>Password</label>
+            <input type="password" id="wifi-password" placeholder="••••••••">
+            <div class="wifi-row" style="margin-top:1rem">
+                <div>
+                    <label style="margin-top:0">Security</label>
+                    <select id="wifi-security">
+                        <option value="WPA">WPA/WPA2</option>
+                        <option value="WEP">WEP</option>
+                        <option value="">None</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="margin-top:0">Hidden?</label>
+                    <select id="wifi-hidden">
+                        <option value="false">No</option>
+                        <option value="true">Yes</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <button class="generate-btn" onclick="generate()">Generate QR Code</button>
+    </div>
+
+    <!-- Output -->
+    <div class="output-card" id="output-card">
+        <div class="qr-label" id="qr-label"></div>
+        <div id="qr-container"></div>
+        <button class="download-btn" onclick="downloadQR()">Download QR Code</button>
+    </div>
+
+    <p class="footer-link">
+        Built by <a href="https://zainrazak.github.io" target="_blank">Zain Razak</a> &nbsp;·&nbsp;
+        <a href="https://github.com/zainrazak/QRCodeGenerator" target="_blank">View Source</a>
+    </p>
+
+    <script>
+        let currentType = 'url';
+
+        document.querySelectorAll('.type-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentType = btn.dataset.type;
+                document.querySelectorAll('[id^="form-"]').forEach(f => f.style.display = 'none');
+                document.getElementById('form-' + currentType).style.display = 'block';
+                document.getElementById('output-card').classList.remove('visible');
+            });
+        });
+
+        function buildContent() {
+            switch (currentType) {
+                case 'url': {
+                    const v = document.getElementById('url-input').value.trim();
+                    return v ? (v.startsWith('http') ? v : 'https://' + v) : null;
+                }
+                case 'text':
+                    return document.getElementById('text-input').value.trim() || null;
+                case 'email': {
+                    const email = document.getElementById('email-input').value.trim();
+                    const subject = document.getElementById('email-subject').value.trim();
+                    if (!email) return null;
+                    return subject ? `mailto:${email}?subject=${encodeURIComponent(subject)}` : `mailto:${email}`;
+                }
+                case 'phone': {
+                    const p = document.getElementById('phone-input').value.trim();
+                    return p ? `tel:${p}` : null;
+                }
+                case 'wifi': {
+                    const ssid = document.getElementById('wifi-ssid').value.trim();
+                    if (!ssid) return null;
+                    const pass = document.getElementById('wifi-password').value;
+                    const sec = document.getElementById('wifi-security').value;
+                    const hidden = document.getElementById('wifi-hidden').value;
+                    return `WIFI:T:${sec};S:${ssid};P:${pass};H:${hidden};;`;
+                }
+            }
+        }
+
+        function generate() {
+            const content = buildContent();
+            if (!content) { alert('Please fill in the required field.'); return; }
+
+            const container = document.getElementById('qr-container');
+            container.innerHTML = '';
+
+            new QRCode(container, {
+                text: content,
+                width: 200,
+                height: 200,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            document.getElementById('qr-label').textContent = content.length > 60 ? content.slice(0, 60) + '…' : content;
+            document.getElementById('output-card').classList.add('visible');
+        }
+
+        function downloadQR() {
+            const canvas = document.querySelector('#qr-container canvas');
+            const img = document.querySelector('#qr-container img');
+            const src = canvas ? canvas.toDataURL('image/png') : (img ? img.src : null);
+            if (!src) return;
+            const a = document.createElement('a');
+            a.href = src;
+            a.download = 'qr-code-genie.png';
+            a.click();
+        }
+    </script>
+</body>
+</html>

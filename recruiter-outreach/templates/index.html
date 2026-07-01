@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recruiter Outreach</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container { max-width: 780px; margin: 0 auto; }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 6px;
+    }
+    .subtitle { font-size: 0.875rem; color: #64748b; margin-bottom: 32px; }
+
+    .input-row { display: flex; gap: 10px; margin-bottom: 36px; }
+    .input-row input {
+      flex: 1;
+      background: #1e2230;
+      border: 1px solid #2d3348;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .input-row input:focus { border-color: #6366f1; }
+    .input-row input::placeholder { color: #475569; }
+    .btn {
+      background: #6366f1;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 12px 22px;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .btn:hover { background: #4f46e5; }
+    .btn:disabled { background: #374151; cursor: not-allowed; }
+
+    .pipeline { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+    .step {
+      background: #1e2230;
+      border: 1px solid #2d3348;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      opacity: 0.4;
+      transition: opacity 0.2s, border-color 0.2s;
+    }
+    .step.active  { opacity: 1; border-color: #6366f1; }
+    .step.done    { opacity: 1; border-color: #22c55e; }
+    .step.error   { opacity: 1; border-color: #ef4444; }
+    .step.pending { opacity: 0.5; }
+
+    .step-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700;
+      flex-shrink: 0;
+      background: #2d3348; color: #94a3b8;
+    }
+    .step.active  .step-icon { background: #312e81; color: #a5b4fc; }
+    .step.done    .step-icon { background: #14532d; color: #86efac; }
+    .step.error   .step-icon { background: #450a0a; color: #fca5a5; }
+
+    .step-label { font-size: 0.875rem; flex: 1; }
+    .step-badge {
+      font-size: 0.7rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 99px;
+      background: #2d3348; color: #64748b;
+    }
+    .step.active  .step-badge { background: #312e81; color: #a5b4fc; }
+    .step.done    .step-badge { background: #14532d; color: #86efac; }
+    .step.error   .step-badge { background: #450a0a; color: #fca5a5; }
+
+    .spinner {
+      width: 14px; height: 14px;
+      border: 2px solid #4f46e5;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .card {
+      background: #1e2230;
+      border: 1px solid #2d3348;
+      border-radius: 10px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .card.visible { display: block; }
+    .card h2 { font-size: 0.8rem; font-weight: 600; color: #64748b; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+
+    .job-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .field label { font-size: 0.7rem; color: #475569; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .field span  { font-size: 0.875rem; color: #e2e8f0; }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 99px;
+    }
+    .badge-blue   { background: #1e3a5f; color: #93c5fd; }
+    .badge-green  { background: #14532d; color: #86efac; }
+    .badge-yellow { background: #713f12; color: #fde68a; }
+    .badge-gray   { background: #1e2230; color: #94a3b8; border: 1px solid #2d3348; }
+
+    .error-box {
+      background: #1c0a0a;
+      border: 1px solid #7f1d1d;
+      border-radius: 10px;
+      color: #fca5a5;
+      font-size: 0.85rem;
+      padding: 16px 18px;
+      display: none;
+    }
+    .error-box.visible { display: block; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Recruiter Outreach</h1>
+  <p class="subtitle">Paste a job posting URL — the pipeline runs automatically.</p>
+
+  <div class="input-row">
+    <input id="urlInput" type="url" placeholder="https://boards.greenhouse.io/company/jobs/..." />
+    <button class="btn" id="runBtn" onclick="runPipeline()">Run Pipeline</button>
+  </div>
+
+  <div class="pipeline">
+    <div class="step" id="step-1">
+      <div class="step-icon">1</div>
+      <span class="step-label">Parse job posting</span>
+      <span class="step-badge">Waiting</span>
+    </div>
+    <div class="step" id="step-2">
+      <div class="step-icon">2</div>
+      <span class="step-label">Find recruiter contacts</span>
+      <span class="step-badge">Waiting</span>
+    </div>
+    <div class="step" id="step-3">
+      <div class="step-icon">3</div>
+      <span class="step-label">Verify email addresses</span>
+      <span class="step-badge">Waiting</span>
+    </div>
+    <div class="step" id="step-4">
+      <div class="step-icon">4</div>
+      <span class="step-label">Log to Google Sheets</span>
+      <span class="step-badge">Waiting</span>
+    </div>
+    <div class="step" id="step-5">
+      <div class="step-icon">5</div>
+      <span class="step-label">Draft outreach email</span>
+      <span class="step-badge">Waiting</span>
+    </div>
+  </div>
+
+  <div class="error-box" id="errorBox"></div>
+
+  <div class="card" id="jobCard">
+    <h2>Job Details</h2>
+    <div class="job-grid" id="jobGrid"></div>
+  </div>
+</div>
+
+<script>
+  function badge(text, type) {
+    const cls = { Remote: 'badge-green', Hybrid: 'badge-yellow', Onsite: 'badge-gray',
+                  Senior: 'badge-blue', Staff: 'badge-blue', Principal: 'badge-blue',
+                  Greenhouse: 'badge-green', Workday: 'badge-blue', Lever: 'badge-yellow' };
+    return `<span class="badge ${cls[text] || 'badge-gray'}">${text}</span>`;
+  }
+
+  function renderJob(job) {
+    const fields = [
+      { label: 'Company',    value: job.company_name },
+      { label: 'Domain',     value: job.company_domain },
+      { label: 'Role',       value: job.role_title },
+      { label: 'Department', value: job.department },
+      { label: 'Seniority',  value: badge(job.seniority) },
+      { label: 'Location',   value: job.location },
+      { label: 'Remote',     value: badge(job.remote_type) },
+      { label: 'ATS',        value: badge(job.ats_platform) },
+      { label: 'Job ID',     value: job.job_id || '—' },
+    ];
+    document.getElementById('jobGrid').innerHTML = fields.map(f =>
+      `<div class="field"><label>${f.label}</label><span>${f.value}</span></div>`
+    ).join('');
+    document.getElementById('jobCard').classList.add('visible');
+  }
+
+  function setStep(n, status, label) {
+    const el = document.getElementById(`step-${n}`);
+    el.className = `step ${status}`;
+    const badge = el.querySelector('.step-badge');
+    const icon  = el.querySelector('.step-icon');
+    if (status === 'running') {
+      badge.textContent = 'Running';
+      icon.innerHTML = '<div class="spinner"></div>';
+    } else if (status === 'done') {
+      badge.textContent = 'Done';
+      icon.textContent = '✓';
+    } else if (status === 'error') {
+      badge.textContent = 'Error';
+      icon.textContent = '✕';
+    } else {
+      badge.textContent = label || 'Soon';
+      icon.textContent = n;
+    }
+    if (label) el.querySelector('.step-label').textContent = label;
+  }
+
+  async function runPipeline() {
+    const url = document.getElementById('urlInput').value.trim();
+    if (!url) return;
+
+    document.getElementById('runBtn').disabled = true;
+    document.getElementById('errorBox').classList.remove('visible');
+    document.getElementById('jobCard').classList.remove('visible');
+    [1,2,3,4,5].forEach(n => setStep(n, '', 'Waiting'));
+
+    const { run_id } = await fetch('/run', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url })
+    }).then(r => r.json());
+
+    const es = new EventSource(`/stream/${run_id}`);
+
+    es.addEventListener('step', e => {
+      const { step, status, label, data } = JSON.parse(e.data);
+      setStep(step, status, label);
+      if (data && step === 1) renderJob(data);
+    });
+
+    es.addEventListener('done', () => {
+      es.close();
+      document.getElementById('runBtn').disabled = false;
+    });
+
+    es.addEventListener('error', e => {
+      try {
+        const { message } = JSON.parse(e.data);
+        const box = document.getElementById('errorBox');
+        box.textContent = `Error: ${message}`;
+        box.classList.add('visible');
+      } catch (_) {}
+      es.close();
+      document.getElementById('runBtn').disabled = false;
+    });
+  }
+
+  document.getElementById('urlInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') runPipeline();
+  });
+</script>
+</body>
+</html>

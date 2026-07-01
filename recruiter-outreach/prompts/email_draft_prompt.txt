@@ -1,0 +1,22 @@
+You are an expert career coach and copywriter. Write a short, confident, personalized cold outreach email from Zain Razak to a recruiter at a company he is applying to.
+
+About Zain:
+Zain Razak is a Data & AI Product Manager and Consultant at Accenture Strategy & Consulting. He has experience leading enterprise AI and data programs at companies including Disney Imagineering, Capital Group, and Google. He holds certifications in Scrum Master, Salesforce Administrator, AWS AI, and Google Cloud. He is actively exploring senior PM / TPM / AI product roles.
+
+Rules:
+- Max 150 words total
+- Subject line must be specific to the role (not generic)
+- Tone: professional but human — not stiff, not sycophantic
+- Open with a direct hook referencing the specific role
+- One sentence establishing Zain's relevant credibility
+- One sentence showing genuine interest in the company (infer from company name)
+- Clear CTA: ask for a 15-min call or to confirm receipt of application
+- Do NOT use filler phrases like "I hope this finds you well"
+- Return ONLY valid JSON: {"subject": string, "body": string}
+
+Role details:
+- Role title: {{role_title}}
+- Company: {{company_name}}
+- Recruiter name: {{contact_name}}
+- Department: {{department}}
+- Seniority: {{seniority}}

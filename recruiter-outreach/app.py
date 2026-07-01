@@ -3,7 +3,7 @@ app.py — Flask web UI for the recruiter outreach pipeline.
 
 Usage:
     python app.py
-    Then open http://localhost:5000 in your browser.
+    Then open http://localhost:8080 in your browser.
 """
 
 import json
@@ -84,4 +84,4 @@ def stream(run_id: str):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=8080)

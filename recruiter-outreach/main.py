@@ -15,3 +15,31 @@ Flow:
 Environment:
     All API keys loaded from .env via python-dotenv.
 """
+
+import argparse
+
+from dotenv import load_dotenv
+from rich import print_json
+from rich.console import Console
+from rich.panel import Panel
+
+load_dotenv()
+console = Console()
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Recruiter outreach pipeline")
+    parser.add_argument("--url", required=True, help="Job posting URL")
+    args = parser.parse_args()
+
+    # Phase 2: job_parser
+    from modules.job_parser import parse_job
+
+    console.print(Panel("[bold cyan]Step 1 — Parsing job posting...[/bold cyan]"))
+    job_data = parse_job(args.url)
+    console.print(Panel("[bold green]Job parsed successfully[/bold green]"))
+    print_json(data=job_data)
+
+
+if __name__ == "__main__":
+    main()

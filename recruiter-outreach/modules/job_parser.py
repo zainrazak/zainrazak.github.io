@@ -29,3 +29,83 @@ Returns a dict matching this schema:
 Raises:
     ValueError if the page cannot be fetched or Claude returns unparseable JSON.
 """
+
+import json
+import os
+from pathlib import Path
+
+import anthropic
+import requests
+from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+
+load_dotenv()
+
+PROMPTS_DIR = Path(__file__).parent.parent / "prompts"
+
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/120.0.0.0 Safari/537.36"
+    )
+}
+
+
+def _load_prompt() -> str:
+    return (PROMPTS_DIR / "job_parser_prompt.txt").read_text()
+
+
+def _scrape(url: str) -> str:
+    try:
+        response = requests.get(url, headers=HEADERS, timeout=15)
+        response.raise_for_status()
+    except requests.RequestException as e:
+        raise ValueError(f"Failed to fetch job URL: {e}")
+
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    for tag in soup(["script", "style", "nav", "header", "footer"]):
+        tag.decompose()
+
+    text = soup.get_text(separator="\n", strip=True)
+    lines = [line for line in text.splitlines() if line.strip()]
+    return "\n".join(lines)
+
+
+def _parse_with_claude(page_text: str, url: str) -> dict:
+    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    system_prompt = _load_prompt()
+
+    message = client.messages.create(
+        model="claude-sonnet-4-6",
+        max_tokens=1024,
+        messages=[
+            {
+                "role": "user",
+                "content": f"{system_prompt}\n\n{page_text[:8000]}",
+            }
+        ],
+    )
+
+    raw = message.content[0].text.strip()
+
+    if raw.startswith("```"):
+        raw = raw.split("```")[1]
+        if raw.startswith("json"):
+            raw = raw[4:]
+        raw = raw.strip()
+
+    try:
+        result = json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Claude returned invalid JSON: {e}\n\nRaw response:\n{raw}")
+
+    result["job_url"] = url
+    return result
+
+
+def parse_job(url: str) -> dict:
+    """Scrape a job posting URL and return structured data via Claude API."""
+    page_text = _scrape(url)
+    return _parse_with_claude(page_text, url)
